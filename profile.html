@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap-grid.min.css" rel="stylesheet" crossorigin="anonymous">
+    <title>Perfil</title>
+
+    <style>
+        .avatar {
+            width: 200px;
+            height: 200px;
+        }
+
+        .success-btn {
+            background: green;
+            color: white;
+        }
+
+        .nav-container {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container p-5">
+        <div class="row justify-content-center">
+            <div class="d-flex align-items-center justify-content-center">
+                <a href="/" title="go back">
+                    <span class="icon-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                          <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
+                        </svg>
+                    </span>
+                </a>
+                <h1 class="m-0 mx-2">Perfil</h1>
+            </div>
+
+            <div class="row justify-content-center gy-5 mb-5">
+                <img id="avatar" src="/img/JohnWick.jpg" alt="avatar profile image" class="avatar" />
+                <h2 id="user-name" class="text-align-center">User Name</h2>
+            </div>
+
+            <div class="row text-align-center g-3">
+                <div>
+                    <button class="link-btn w-200" id="changeAddress">Cambiar Direccion</button>
+                </div>
+                <div>
+                    <button class="link-btn w-200" id="changeEmail">Cambiar Email</button>
+                </div>
+                <div>
+                    <button class="link-btn w-200" id="changePassword">Cambiar Contraseña</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function simulateSuccess(btnElem) {
+            const prevText = btnElem.textContent;
+
+            btnElem.classList.add("success-btn");
+            btnElem.textContent = "Simular Exito"
+
+            setTimeout(() => {
+                btnElem.classList.remove("success-btn");
+                btnElem.textContent = prevText;
+            }, 3000); 
+        }
+
+        const addr = document.getElementById("changeAddress");
+        const email = document.getElementById("changeEmail");
+        const pass = document.getElementById("changePassword");
+
+        document.getElementById("changeAddress").addEventListener("click", () => {
+            // Simulate changing the address
+            simulateSuccess(addr);
+        });
+
+        document.getElementById("changeEmail").addEventListener("click", () => {
+            // Simulate changing the email
+            simulateSuccess(email);
+        });
+
+        document.getElementById("changePassword").addEventListener("click", () => {
+            // Simulate changing the password
+            simulateSuccess(pass);
+        });
+    </script>
+</body>
+
+</html>
