@@ -48,3 +48,12 @@ function removeFromCart(productName) {
 document.addEventListener('DOMContentLoaded', () => {
     updateCartDisplay();
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const addToCartButton = document.getElementById('addToCartButton');
+    addToCartButton.addEventListener('click', function(event) {
+        event.preventDefault(); 
+        const productName = addToCartButton.getAttribute('data-name');
+        const productPrice = parseFloat(addToCartButton.getAttribute('data-price'));
+        addToCart(productName, productPrice);
+    });
+});
