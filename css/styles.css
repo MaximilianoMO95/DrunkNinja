@@ -456,3 +456,34 @@
     width: 100%;
     z-index: 1;
   }
+
+   /* Estilos para la tabla del carrito */
+  table {
+    width: 80%; /* Ancho de la tabla */
+    margin: auto; /* Centrar la tabla en la pantalla */
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    margin-top: 3rem; /* Espacio arriba de la tabla */
+  }
+
+  th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+
+  /* Ajustar ancho de las columnas */
+  th:nth-child(1),
+  td:nth-child(1) {
+    width: 50%; /* Ancho de la columna "Producto" */
+  }
+
+  th:nth-child(2),
+  td:nth-child(2) {
+    width: 20%; /* Ancho de la columna "Precio" */
+  }
+
+  th:nth-child(3),
+  td:nth-child(3) {
+   width: 30%; /* Ancho de la columna "Acciones" */
+  }
