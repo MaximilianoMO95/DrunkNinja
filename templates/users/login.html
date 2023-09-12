@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Drunk Ninja - Login{% endblock %}
+
+{% block head %}
+<style>
+    .login-btn-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .login-btn-container>a {
+        font-size: 0.9rem;
+        align-self: flex-end;
+    }
+
+    .errorlist {
+        list-style: none;
+    }
+
+    .error-container {
+        padding: 1rem;
+        text-align: center;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="contaier banner-bg">
+    <div class="row justify-content-center align-items-center min-vh-100">
+        <div class="glass-container row justify-content-center align-items-center col-lg-4 col-md-6">
+            <form id="login-form" class="row gy-4 p-5" method="post">
+                <h2 class="text-align-center mt-3">Inicia Sesion</h2>
+
+                {% csrf_token %}
+                {{ form.username }}
+                {{ form.password }}
+
+                <div class="login-btn-container">
+                    <input type="submit" value="Iniciar Sesion">
+                    <div class="d-flex justify-content-between">
+                        <a href="registrar.html">crear una cuenta</a>
+                        <a href="recover-password.html">recuperar contraseña</a>
+                    </div>
+                </div>
+            </form>
+
+            {% if form.non_field_errors %}
+            <div class="error-container error row justify-content-center align-items-center">
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</main>
+{% endblock %}
