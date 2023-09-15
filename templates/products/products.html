@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Drunk Ninja - Products{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/products.css' %}">
+{% endblock %}
+
+{% block content %}
+<main>
+        <h1>Licores</h1>
+
+        <div>
+                <h2>Products</h2>
+                <ul class="product-list">
+                        {% for product in object_list %}
+                        <li class="card-link">
+                                <img src="{{ product.image.url }}" alt="{{ product.name }} Image">
+
+                                <div class="product-text">
+                                        <h2>{{ product.name }}</h2>
+                                        <span>{{ product.price }}</span>
+                                </div>
+                        </li>
+                        {% empty %}
+                        <p>No products available.</p>
+                        {% endfor %}
+                </ul>
+        </div>
+</main>
+{% endblock %}

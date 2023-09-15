@@ -25,6 +25,7 @@ git clone https://github.com/MaximilianoMO95/DrunkNinja
 ```
 pip install django
 pip install python-dotenv
+pip install Pillow
 ```
 
 </br>

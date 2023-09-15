@@ -1,71 +1,30 @@
-{% load static %}
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="es">
+{% block title %}Drunk Ninja - Registro{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap-grid.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
-    <title>Registrarse</title>
-</head>
-
-<body>
-    <main class="container">
+{% block content %}
+<main class="container">
         <div class="row">
-            <div class="col-lg-5 col-md-12 banner-bg position-relative"></div>
+                <div class="col-lg-5 col-md-12 banner-bg position-relative"></div>
 
-            <div class="glass-container col-lg-7 col-md-12">
-                <form id="registration-form" class="row gy-4 p-5" action="/" method="get">
-                    <h2 class="text-align-center mt-3">Registrate</h2>
+                <div class="glass-container col-lg-7 col-md-12">
+                        <form class="row gy-4 p-5" method="post">
+                                <h2 class="text-align-center mt-3">Registrate</h2>
 
-                    <div>
-                        <label for="full-name">Nombre Completo</label>
-                        <input type="text" id="full-name" name="full-name" required>
-                    </div>
+                                {% csrf_token %}
+                                {{ form.as_p }}
 
-                    <div>
-                        <label for="username">Nombre De Usuario</label>
-                        <input type="text" id="username" name="username" required>
-                    </div>
-
-                    <div>
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-
-                    <div>
-                        <label for="password">Contraseña</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
-
-                    <div>
-                        <label for="confirm-password">Confirmar Contraseña</label>
-                        <input type="password" id="confirm-password" name="confirm-password" required>
-                    </div>
-
-                    <div>
-                        <label for="birthdate">Fecha De Nacimiento</label>
-                        <input type="date" id="birthdate" name="birthdate" required>
-                    </div>
-
-                    <div>
-                        <label for="shipping-address">Direccion de envio</label>
-                        <input type="text" id="shipping-address" name="shipping-address">
-                    </div>
-
-
-                    <div>
-                        <input type="submit" value="Registrarse">
-                    </div>
-                </form>
-            </div>
+                                <div>
+                                        <input type="submit" value="Registrarse">
+                                </div>
+                        </form>
+                </div>
         </div>
-    </main>
+</main>
+{% endblock %}
 
-    <script type="module">
+{% block script %}
+<script type="module">
         import {validatePassword, validateAgeByDate} from "/js/validationUtils.js";
 
         const birthdateInput = document.getElementById("birthdate");
@@ -73,29 +32,27 @@
         const confirmPasswordInput = document.getElementById("confirm-password");
 
         passwordInput.addEventListener("blur", function () {
-            const pass = this.value;
+                const pass = this.value;
 
-            this.setCustomValidity(validatePassword(pass));
+                this.setCustomValidity(validatePassword(pass));
         });
 
         confirmPasswordInput.addEventListener("blur", function () {
-            const pass = passwordInput.value;
-            const confirmPass = this.value;
+                const pass = passwordInput.value;
+                const confirmPass = this.value;
 
-            if (confirmPass !== pass) {
-                this.setCustomValidity("Las contraseñas no coinciden.");
-            } else {
-                this.setCustomValidity("");
-            }
+                if (confirmPass !== pass) {
+                        this.setCustomValidity("Las contraseñas no coinciden.");
+                } else {
+                        this.setCustomValidity("");
+                }
         });
 
         birthdateInput.addEventListener("input", function () {
-            const selectedDate = new Date(this.value);
-            const minAge = 18;
+                const selectedDate = new Date(this.value);
+                const minAge = 18;
 
-            this.setCustomValidity(validateAgeByDate(minAge, selectedDate));
+                this.setCustomValidity(validateAgeByDate(minAge, selectedDate));
         });
-    </script>
-</body>
-
-</html>
+</script>
+{% endblock %}

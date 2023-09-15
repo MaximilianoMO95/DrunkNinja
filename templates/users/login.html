@@ -30,11 +30,11 @@
 <main class="contaier banner-bg">
     <div class="row justify-content-center align-items-center min-vh-100">
         <div class="glass-container row justify-content-center align-items-center col-lg-4 col-md-6">
-            <form id="login-form" class="row gy-4 p-5" method="post">
+            <form class="row gy-4 p-5" method="post">
                 <h2 class="text-align-center mt-3">Inicia Sesion</h2>
 
                 {% csrf_token %}
-                {{ form.username }}
+                {{ form.email }}
                 {{ form.password }}
 
                 <div class="login-btn-container">
