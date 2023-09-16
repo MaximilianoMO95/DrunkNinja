@@ -121,6 +121,8 @@ USE_TZ = True
 
 # Urls
 LOGIN_URL = '/account/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Formats
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
