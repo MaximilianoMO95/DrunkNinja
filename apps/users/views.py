@@ -61,7 +61,7 @@ class UserProfileView(View, PermissionRequiredMixin):
 
     def post(self, request):
         profile_form = CustomerProfileForm(request.POST, instance=request.user.customer)
-        user_form = UserUpdateForm(instance=request.user)
+        user_form = UserUpdateForm(request.POST, instance=request.user)
 
         profile_form.fields['date_of_birth'].disabled = True
         if profile_form.is_valid() and user_form.is_valid():

@@ -25,7 +25,6 @@ class UserRegistrationForm(UserCreationForm):
 
 
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
 
     class Meta:
         model = User
