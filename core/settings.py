@@ -130,6 +130,9 @@ DATE_INPUT_FORMATS = ['%d-%m-%Y']
 # Users
 AUTH_USER_MODEL = 'users.User'
 
+# Only use for development
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
