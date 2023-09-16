@@ -4,13 +4,17 @@
 {% block title %}Drunk Ninja - Profile{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/products.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
 {% endblock %}
 
 {% block content %}
 <main class="container p-5">
         <div class="row justify-content-center">
-                <h1>Customer Profile</h1>
+                <h1>Profile</h1>
+                <div class="avatar">
+                        <img src="{% static 'img/avatar.svg' %}" alt="avatar"/>
+                </div>
+
                 <form method="post">
                         {% csrf_token %}
                         {{ user_form.as_p }}

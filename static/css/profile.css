@@ -1,5 +1,16 @@
 .avatar {
+  display: flex;
+  border: 0;
+  border-radius: 100%;
+  padding: 1rem;
+
+  background: var(--bg-3);
+
   width: 200px;
   height: 200px;
 }
 
+.avatar img {
+  width: 100%;
+  height: 100%;
+}
