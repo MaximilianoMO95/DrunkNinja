@@ -36,7 +36,7 @@ class UserRegistrationView(View):
 
             login(request, user)
 
-            return redirect('users:profile')
+            return redirect('index')
 
         return render(request, self.template_name, {'form': form})
 
