@@ -18,10 +18,16 @@ class UserRegistrationView(View):
     template_name = 'users/signin.html'
 
     def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('index')
+
         form = UserRegistrationForm()
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
+        if request.user.is_authenticated:
+            return redirect('index')
+
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
