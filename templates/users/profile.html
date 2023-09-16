@@ -8,18 +8,27 @@
 {% endblock %}
 
 {% block content %}
-<main class="container p-5">
+
+<header class="row mb-3">
+{% include 'navbar.html' %}
+</header>
+
+<main class="container p-5 profile-box">
         <div class="row justify-content-center">
                 <h1>Profile</h1>
-                <div class="avatar">
-                        <img src="{% static 'img/avatar.svg' %}" alt="avatar"/>
+                <div class="row justify-content-center g-3">
+                        <div class="avatar">
+                                <img src="{% static 'img/avatar.svg' %}" alt="avatar"/>
+                        </div>
+
+                        <a href="{% url 'users:password_change' %}" class="text-align-center">Cambiar Contraseña</a>
                 </div>
 
                 <form method="post">
                         {% csrf_token %}
                         {{ user_form.as_p }}
                         {{ profile_form.as_p }}
-                        <button type="submit">Save Changes</button>
+                        <input type="submit" class="mt-3" value="Guardar Cambios"/>
                 </form>
         </div>
 </main>

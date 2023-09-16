@@ -142,6 +142,10 @@ input:is([type="email"], [type="text"], [type="password"]):focus {
   border-left: 2px solid var(--link-active);
 }
 
+input:disabled {
+  opacity: 0.8;
+}
+
 input,
 textarea {
   background: var(--bg-1);
