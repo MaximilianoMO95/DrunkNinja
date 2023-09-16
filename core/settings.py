@@ -119,6 +119,9 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Urls
+LOGIN_URL = '/account/login/'
+
 # Formats
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
