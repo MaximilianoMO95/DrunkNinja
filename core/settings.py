@@ -125,6 +125,8 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # Formats
+USE_L10N = False
+DATE_FORMAT = 'd-m-Y'
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
 # Users

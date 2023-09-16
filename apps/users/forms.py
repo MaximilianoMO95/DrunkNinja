@@ -32,7 +32,9 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class CustomerProfileForm(forms.ModelForm):
-    date_of_birth = forms.DateField(widget=forms.TextInput(attrs={'read-only': True, 'disabled': True}))
+    date_of_birth = forms.DateField(
+            widget=forms.DateInput(format='%d-%m-%Y', attrs={'read-only': True, 'disabled': True})
+    )
 
     class Meta:
         model = Customer
