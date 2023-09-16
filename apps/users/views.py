@@ -15,7 +15,7 @@ class UserLoginView(LoginView):
 
 
 class UserRegistrationView(View):
-    template_name = 'users/registration.html'
+    template_name = 'users/signin.html'
 
     def get(self, request):
         form = UserRegistrationForm()
