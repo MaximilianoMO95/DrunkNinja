@@ -24,7 +24,17 @@ class UserRegistrationForm(UserCreationForm):
         fields = ('username', 'email', 'password1', 'password2', 'shipping_address', 'date_of_birth')
 
 
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['email']
+
+
 class CustomerProfileForm(forms.ModelForm):
+    date_of_birth = forms.DateField(widget=forms.TextInput(attrs={'read-only': True, 'disabled': True}))
+
     class Meta:
         model = Customer
         fields = ('shipping_address', 'date_of_birth')

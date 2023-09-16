@@ -6,7 +6,7 @@ from django.contrib.auth import login
 from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
 
-from .forms import (CustomerProfileForm, UserLoginForm, UserRegistrationForm)
+from .forms import (CustomerProfileForm, UserLoginForm, UserRegistrationForm, UserUpdateForm)
 from .models import Customer
 
 class UserLoginView(LoginView):
@@ -46,14 +46,19 @@ class UserProfileView(View):
     template_name = 'users/profile.html'
 
     def get(self, request):
-        form = CustomerProfileForm(instance=request.user.customer)
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = CustomerProfileForm(instance=request.user.customer)
 
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {'user_form': user_form, 'profile_form': profile_form})
 
     def post(self, request):
-        form = CustomerProfileForm(request.POST, instance=request.user.customer)
-        if form.is_valid():
-            form.save()
+        profile_form = CustomerProfileForm(request.POST, instance=request.user.customer)
+        user_form = UserUpdateForm(instance=request.user)
+
+        profile_form.fields['date_of_birth'].disabled = True
+        if profile_form.is_valid() and user_form.is_valid():
+            profile_form.save()
+            user_form.save()
             return redirect('users:profile')
 
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {'user_form': user_form, 'profile_form': profile_form})
