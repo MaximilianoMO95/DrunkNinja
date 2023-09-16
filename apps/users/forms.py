@@ -1,18 +1,30 @@
+from django import forms
 from django.contrib.auth.forms import (
         AuthenticationForm,
-        UserCreationForm,
+        UserCreationForm
 )
 
-from .models import CustomerUser
+from .models import Customer, User
 
 class UserLoginForm(AuthenticationForm):
     class Meta:
-        model = CustomerUser
+        model = User 
         fields = ('username', 'password')
 
 
 class UserRegistrationForm(UserCreationForm):
-    class Meta:
-        model = CustomerUser
-        fields = ('first_name', 'last_name', 'email', 'password1', 'password2')
+    email = forms.EmailField(required=True)
+    shipping_address = forms.CharField(max_length=255)
+    date_of_birth = forms.DateField(
+        widget=forms.DateInput(format='%d-%m-%Y', attrs={'placeholder': 'DD-MM-YYYY'})
+    )
 
+    class Meta:
+        model = User 
+        fields = ('username', 'email', 'password1', 'password2', 'shipping_address', 'date_of_birth')
+
+
+class CustomerProfileForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = ('shipping_address', 'date_of_birth')

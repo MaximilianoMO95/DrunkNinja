@@ -2,6 +2,19 @@
 
 {% block title %}Drunk Ninja - Registro{% endblock %}
 
+{% block head %}
+<style>
+        .errorlist {
+                list-style: none;
+        }
+
+        .error-container {
+                padding: 1rem;
+                text-align: center;
+        }
+</style>
+{% endblock %}
+
 {% block content %}
 <main class="container">
         <div class="row">
@@ -12,47 +25,70 @@
                                 <h2 class="text-align-center mt-3">Registrate</h2>
 
                                 {% csrf_token %}
-                                {{ form.as_p }}
+                                {% if form.non_field_errors %}
+                                <div class="error">
+                                        {{ form.non_field_errors.as_ul }}
+                                </div>
+                                {% endif %}
 
                                 <div>
-                                        <input type="submit" value="Registrarse">
+                                        {{ form.username.label_tag }} {{ form.username }}
+                                        {% if form.username.errors %}
+                                        <div class="error">
+                                                {{ form.username.errors.as_ul }}
+                                        </div>
+                                        {% endif %}
                                 </div>
+
+                                <div>
+                                        {{ form.email.label_tag }} {{ form.email }}
+                                        {% if form.email.errors %}
+                                        <div class="error">
+                                                {{ form.email.errors.as_ul }}
+                                        </div>
+                                        {% endif %}
+                                </div>
+
+                                <div>
+                                        {{ form.password1.label_tag }} {{ form.password1 }}
+                                        {% if form.password1.errors %}
+                                        <div class="error">
+                                                {{ form.password1.errors.as_ul }}
+                                        </div>
+                                        {% endif %}
+                                </div>
+
+                                <div>
+                                        {{ form.password2.label_tag }} {{ form.password2 }}
+                                        {% if form.password2.errors %}
+                                        <div class="error">
+                                                {{ form.password2.errors.as_ul }}
+                                        </div>
+                                        {% endif %}
+                                </div>
+
+                                <div>
+                                        {{ form.shipping_address.label_tag }} {{ form.shipping_address }}
+                                        {% if form.shipping_address.errors %}
+                                        <div class="error">
+                                                {{ form.shipping_address.errors.as_ul }}
+                                        </div>
+                                        {% endif %}
+                                </div>
+
+                                <div>
+                                        {{ form.date_of_birth.label_tag }} {{ form.date_of_birth }}
+                                        {% if form.date_of_birth.errors %}
+                                        <div class="error">
+                                                {{ form.date_of_birth.errors.as_ul }}
+                                        </div>
+                                        {% endif %}
+                                </div>
+
+
+                                <input type="submit" value="Registrarse">
                         </form>
                 </div>
         </div>
 </main>
-{% endblock %}
-
-{% block script %}
-<script type="module">
-        import {validatePassword, validateAgeByDate} from "/js/validationUtils.js";
-
-        const birthdateInput = document.getElementById("birthdate");
-        const passwordInput = document.getElementById("password");
-        const confirmPasswordInput = document.getElementById("confirm-password");
-
-        passwordInput.addEventListener("blur", function () {
-                const pass = this.value;
-
-                this.setCustomValidity(validatePassword(pass));
-        });
-
-        confirmPasswordInput.addEventListener("blur", function () {
-                const pass = passwordInput.value;
-                const confirmPass = this.value;
-
-                if (confirmPass !== pass) {
-                        this.setCustomValidity("Las contraseñas no coinciden.");
-                } else {
-                        this.setCustomValidity("");
-                }
-        });
-
-        birthdateInput.addEventListener("input", function () {
-                const selectedDate = new Date(this.value);
-                const minAge = 18;
-
-                this.setCustomValidity(validateAgeByDate(minAge, selectedDate));
-        });
-</script>
 {% endblock %}

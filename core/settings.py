@@ -119,8 +119,11 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Formats
+DATE_INPUT_FORMATS = ['%d-%m-%Y']
+
 # Users
-AUTH_USER_MODEL = 'users.AdminUser'
+AUTH_USER_MODEL = 'users.User'
 
 
 # Static files (CSS, JavaScript, Images)
