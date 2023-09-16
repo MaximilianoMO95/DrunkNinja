@@ -1,0 +1,14 @@
+<nav class="navbar">
+        <div class="navbar-logo">
+                <a href="/">DrunkNinja</a>
+        </div>
+        <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item"><a class="nav-link" href="/account/profile">Profile</a></li>
+                <li class="nav-item"><a class="navbar-btn" href="/account/logout">Log Out</a></li>
+                {% else %}
+                <li class="nav-item"><a class="navbar-btn" href="/account/login">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="/account/registration">Registrate</a></li>
+                {% endif %}
+        </ul>
+</nav>
