@@ -4,11 +4,11 @@
         </div>
         <ul class="navbar-nav ml-auto">
                 {% if user.is_authenticated %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'users:profile' %}">Profile</a></li>
-                <li class="nav-item"><a class="navbar-btn" href="{% url 'users:logout' %}">Log Out</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'users:profile' %}">Profile</a></li>
+                        <li class="nav-item"><a class="navbar-btn" href="{% url 'users:logout' %}">Log Out</a></li>
                 {% else %}
-                <li class="nav-item"><a class="navbar-btn" href="{% url 'users:login' %}">Login</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'users:signin' %}">Signin</a></li>
+                        <li class="nav-item"><a class="navbar-btn" href="{% url 'users:login' %}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'users:signin' %}">Signin</a></li>
                 {% endif %}
         </ul>
 </nav>
