@@ -70,7 +70,7 @@ a {
   color: var(--link);
 }
 
-a:hover {
+a:not(.link-btn):hover {
   color: var(--link-hover);
 }
 
@@ -104,7 +104,7 @@ button {
   border-radius: var(--border-radius);
 }
 
-button:hover {
+button:hover:not(.btn, .btn-primary) {
   background: var(--link-hover);
 }
 
@@ -127,7 +127,7 @@ select {
   box-sizing: border-box;
 }
 
-input:is([type="submit"], [type="reset"]):hover {
+input:is([type="submit"], [type="reset"]):not(.btn, .btn-primary):hover {
   background: var(--link);
   color: var(--bg-1);
 }
@@ -221,12 +221,18 @@ footer > a {
   padding: 0.5rem 1rem;
 }
 
+.link-btn:hover, .btn:hover {
+  background: var(--fg-2);
+  color: var(--bg-1);
+}
+
 .btn {
   background: var(--bg-3);
   border-radius: var(--border-radius);
   color: var(--fg-1);
   text-align: center;
   padding: 0.5rem 1rem;
+  cursor: pointer;
 }
 
 .btn-primary {
@@ -234,9 +240,9 @@ footer > a {
   color: var(--bg-1);
 }
 
-.link-btn:hover {
-  color: var(--bg-1);
+.btn-primary:hover {
   background: var(--fg-1);
+  color: var(--bg-1);
 }
 
 .w-200 {
