@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from apps.users.models import User
 
 class Category(models.Model):
     category_id = models.AutoField(primary_key=True)
@@ -31,3 +32,8 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ShoppingCart(models.Model):
+    cart_id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='shopping_cart')
