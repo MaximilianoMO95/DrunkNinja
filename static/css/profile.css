@@ -16,7 +16,7 @@
 }
 
 .profile-box {
-  background: var(--bg-2);
+  background: var(--bg-glass);
   border: 0;
   border-radius: var(--border-radius);
 }

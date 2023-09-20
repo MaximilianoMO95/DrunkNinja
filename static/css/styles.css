@@ -177,6 +177,10 @@ footer > a {
   height: var(--min-height);
 }
 
+.min-vw-100 {
+  width: 100vw;
+}
+
 .w-auto {
   width: auto;
 }
@@ -253,6 +257,10 @@ footer > a {
   width: 150px;
 }
 
+.position-fixed {
+  position: fixed;
+}
+
 .text-bold {
   font-weight: bold;
 }
@@ -264,13 +272,18 @@ footer > a {
   padding: 1.45rem;
 }
 
-.icon-svg, .icon-svg > svg {
+.icon {
+  display: flex;
+  align-items: center;
+}
+
+.icon-svg, .icon-svg svg {
   fill: var(--link);
   width: 36px;
   height: 36px;
 }
 
-.icon-svg:hover, .icon-svg > svg:hover {
+.icon-svg:hover, .icon-svg svg:hover {
   fill: var(--link-hover);
 }
 
@@ -311,6 +324,22 @@ footer > a {
 .banner-bg:before {
   content: "";
   position: absolute;
+  background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('/static/img/Drunkbannernew.png'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.banner-bg-fixed {
+  content: "";
+  position: fixed; 
   background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('/static/img/Drunkbannernew.png'); 
   background-size: cover;
   background-position: center;
