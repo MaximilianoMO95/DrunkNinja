@@ -25,6 +25,7 @@
                                                 <div class="product-text">
                                                         <h2>{{ product.name }}</h2>
                                                         <span>{{ product.price }}</span>
+                                                        <a class="btn" href="{% url "products:basket_add" product.product_id %}">Add</a>
                                                 </div>
                                         </li>
                                 {% endfor %}

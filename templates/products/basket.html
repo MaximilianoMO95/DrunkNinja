@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Your Basket</h1>
+
+    {% if basket_items %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in basket_items %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.product.price }}</td>
+                <td>${{ item.sum }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p>Total Quantity: {{ total_quantity }}</p>
+    <p>Total Sum: ${{ total_sum }}</p>
+
+    <a href="{% url "products:basket_checkout" %}" class="btn btn-primary">Proceed to Checkout</a>
+
+    {% else %}
+    <p>Your basket is empty.</p>
+    {% endif %}
+</div>
+{% endblock %}
