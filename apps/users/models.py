@@ -4,6 +4,8 @@ from django.db import models
 
 class User(AbstractUser):
     email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=30, verbose_name='Nombre', blank=False)
+    last_name = models.CharField(max_length=30, verbose_name='Apellido', blank=False)
 
 
 class Customer(models.Model):

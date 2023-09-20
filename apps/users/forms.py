@@ -15,6 +15,8 @@ class UserLoginForm(AuthenticationForm):
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
+    first_name = forms.CharField(max_length=30, required=True, help_text='Required. Ingresa tu nombre.')
+    last_name = forms.CharField(max_length=30, required=True, help_text='Required. Ingresa tu apellido.')
     shipping_address = forms.CharField(max_length=255)
     date_of_birth = forms.DateField(
         widget=forms.DateInput(format='%d-%m-%Y', attrs={'placeholder': 'DD-MM-YYYY'})
@@ -30,14 +32,14 @@ class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User 
-        fields = ('username', 'email', 'password1', 'password2', 'shipping_address', 'date_of_birth')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'shipping_address', 'date_of_birth')
 
 
 class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['email']
+        fields = ['email', 'first_name', 'last_name']
 
 
 class CustomerProfileForm(forms.ModelForm):
