@@ -1,21 +1,30 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Drunk Ninja{% endblock title %}
 
-{% block content %}
+{% block head %}
+        <link rel="stylesheet" href="{% static 'css/products.css' %}">
+{% endblock %}
 
+{% block content %}
 <header>
         {% include "navbar.html" %}
 </header>
 
 <main>
         <nav class="cards">
-                <ul>
-                        <li><a href="cerveza.html" class="card-link category-accion"> Cerveza</a></li>
-                        <li><a href="whisky.html" class="card-link category-aventura">Whisky</a></li>
-                        <li><a href="pisco.html" class="card-link category-terror">Pisco</a></li>
-                        <li><a href="ron.html" class="card-link category-carreras">Ron</a></li>
-                        <li><a href="vodka.html" class="card-link category-supervivencia">Vodka</a></li>
+                <ul class="product-list">
+                        {% for category in categories %}
+                                <li>
+                                        <a class="card-link" href="#" title="Ir a {{ category.name }}">
+                                                 <img src="{{ category.image.url }}" alt="{{ category.name }} Image">
+                                                 <div class="product-text">
+                                                        {{ category.name }}
+                                                 </div>
+                                        </a>
+                                </li>
+                        {% endfor %}
                 </ul>
         </nav>
 

@@ -11,7 +11,7 @@ ul.product-list {
   height: auto;
 }
   
-ul.product-list > li {
+ul.product-list li {
   display: flex;
   background-size: cover;
   background-position: center;
@@ -29,7 +29,7 @@ ul.product-list .card-link {
   position: relative;
 }
   
-ul.product-list .card-link > img {
+ul.product-list .card-link img {
   position: absolute;
   border-radius: 1rem;
   object-fit: cover;
