@@ -5,7 +5,7 @@
 
 {% block head %}
         <link rel="stylesheet" href="{% static 'css/products.css' %}">
-{% endblock %}
+{% endblock head %}
 
 {% block content %}
 <header>
@@ -14,10 +14,11 @@
 
 <main>
         <nav class="cards">
+                <h2 class="text-bold">Categorias</h2>
                 <ul class="product-list">
                         {% for category in categories %}
                                 <li>
-                                        <a class="card-link" href="#" title="Ir a {{ category.name }}">
+                                        <a class="card-link" href="{% url "products:category" category_id=category.category_id %}" title="Ir a {{ category.name }}">
                                                  <img src="{{ category.image.url }}" alt="{{ category.name }} Image">
                                                  <div class="product-text">
                                                         {{ category.name }}
@@ -29,7 +30,7 @@
         </nav>
 
         <section class="suggested-drinks">
-                <h1 class="suggedted-text">Top Ventas</h1>
+                <h2>Top Ventas</h2>
         </section>
 </main>
 

@@ -1,32 +1,65 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Drunk Ninja - Products{% endblock %}
+{% block title %}Drunk Ninja - Products{% endblock title %}
 
 {% block head %}
         <link rel="stylesheet" href="{% static 'css/products.css' %}">
-{% endblock %}
+{% endblock head %}
 
 {% block content %}
-<main>
-        <h1>Licores</h1>
+<header>
+        {% include "navbar.html" %}
+</header>
+<main class="container">
+        <div class="row justify-content-center min-vh-100 align-items-center">
+                {% if object_list %}
+                        <h1>Productos</h1>
 
-        <div>
-                <h2>Products</h2>
-                <ul class="product-list">
-                        {% for product in object_list %}
-                        <li class="card-link">
-                                <img src="{{ product.image.url }}" alt="{{ product.name }} Image">
+                        <ul class="product-list">
+                                {% for product in object_list %}
+                                        <li class="card-link">
+                                                <img src="{{ product.image.url }}" alt="{{ product.name }} Image">
 
-                                <div class="product-text">
-                                        <h2>{{ product.name }}</h2>
-                                        <span>{{ product.price }}</span>
-                                </div>
-                        </li>
-                        {% empty %}
-                        <p>No products available.</p>
-                        {% endfor %}
-                </ul>
+                                                <div class="product-text">
+                                                        <h2>{{ product.name }}</h2>
+                                                        <span>{{ product.price }}</span>
+                                                </div>
+                                        </li>
+                                {% endfor %}
+                        </ul>
+
+                        {% if is_paginated %}
+                                <nav aria-label="pagination">
+                                        <ul class="pagination justify-content-center">
+                                                <li class="page-item {% if not page_obj.has_previous %} disabled {% endif %}">
+                                                        <a class="page-link"
+                                                           href="{% if  page_obj.has_previous %} {% url 'products:paginator' page_obj.previous_page_number %} {% else %} # {% endif %}"
+                                                           tabindex="-1"
+                                                           aria-disabled="true">
+                                                           Prev
+                                                        </a>
+                                                </li>
+
+                                                {% for page in paginator.page_range %}
+                                                        <li class="page-item">
+                                                                <a class="page-link" href="{% url 'products:paginator' page %}">{{ page }}</a>
+                                                        </li>
+                                                {% endfor %}
+
+                                                <li class="page-item {% if not page_obj.has_next %} disabled {% endif %}">
+                                                        <a class="page-link"
+                                                        href="{% if  page_obj.has_next %} {% url 'products:paginator' page_obj.next_page_number %} {% else %} # {% endif %}">
+                                                        Next 
+                                                        </a>
+                                                </li>
+                                        </ul>
+                                </nav>
+                        {% endif %}
+
+                {% else %}
+                        <h1 class="text-align-center">No Se Han Encontrado Productos</h1>
+                {% endif %}
         </div>
 </main>
-{% endblock %}
+{% endblock content %}
