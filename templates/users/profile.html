@@ -8,14 +8,18 @@
 {% endblock head %}
 
 {% block content %}
-
-<header class="row mb-3">
-        {% include "navbar.html" %}
-</header>
-
-<main class="container p-5 profile-box">
+<main class="container p-5 profile-box position-relative my-5">
+        <div class="banner-bg-fixed"></div>
         <div class="row justify-content-center">
-                <h1>Profile</h1>
+                <div class="d-flex flex-row">
+                        <a class="icon" href="/" title="Volver a la tienda">
+                                <span class="icon-svg">
+                                        <svg fill="#000000" viewBox="-8.5 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>left</title> <path d="M7.094 15.938l7.688 7.688-3.719 3.563-11.063-11.063 11.313-11.344 3.531 3.5z"></path> </g></svg>
+                                </span>
+                        </a>
+                        <h1 class="m-0">Profile</h1>
+                </div>
+
                 <div class="row justify-content-center g-3">
                         <div class="avatar">
                                 <img src="{% static "img/avatar.svg" %}" alt="avatar"/>
