@@ -34,29 +34,22 @@
                                 <h2 class="text-align-center mt-3">Inicia Sesion</h2>
 
                                 {% csrf_token %}
+
                                 {% if form.non_field_errors %}
-                                <div class="error">
-                                        {{ form.non_field_errors.as_ul }}
-                                </div>
+                                        <div class="error">
+                                                {{ form.non_field_errors.as_ul }}
+                                        </div>
                                 {% endif %}
 
-                                <div>
-                                        {{ form.username.label_tag }} {{ form.username }}
-                                        {% if form.username.errors %}
-                                        <div class="error">
-                                                {{ form.username.errors.as_ul }}
+                                {% for field in form %}
+                                        <div>
+                                                {{ field.label_tag }} 
+                                                {{ field }}
+                                                {% if field.errors %}
+                                                        <small class="error">{{ field.errors|striptags  }}</small> 
+                                                {% endif %}
                                         </div>
-                                        {% endif %}
-                                </div>
-
-                                <div>
-                                        {{ form.password.label_tag }} {{ form.password }}
-                                        {% if form.password.errors %}
-                                        <div class="error">
-                                                {{ form.password.errors.as_ul }}
-                                        </div>
-                                        {% endif %}
-                                </div>
+                                {% endfor %}
 
                                 <div class="login-btn-container">
                                         <input type="submit" value="Iniciar Sesion">
