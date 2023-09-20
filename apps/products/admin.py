@@ -7,7 +7,7 @@ admin.site.register(ShoppingCart)
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'categories', 'price')
-    list_filter = ('categories',)
-    search_fields = ('name', 'categories__name')
-    ordering = ('name', 'categories__name')
+    list_display = ('name', 'category', 'price')
+    list_filter = ('category',)
+    search_fields = ('name', 'category__name')
+    ordering = ('name', 'category__name')
