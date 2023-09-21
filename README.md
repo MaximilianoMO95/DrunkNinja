@@ -32,6 +32,13 @@ pip install Pillow
 
 </br>
 
+Optinal Dependencies
+```
+pip install cx-Oracle
+```
+
+</br>
+
 3. Migrate The Database
 ```
 python manage.py makemigrations
