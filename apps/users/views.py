@@ -55,7 +55,11 @@ class UserProfileView(View, PermissionRequiredMixin):
 
     def get(self, request):
         user_form = UserUpdateForm(instance=request.user)
-        profile_form = CustomerProfileForm(instance=request.user.customer)
+
+        if hasattr(request.user, 'customer'):
+            profile_form = CustomerProfileForm(instance=request.user.customer)
+        else:
+            profile_form = None
 
         return render(request, self.template_name, {'user_form': user_form, 'profile_form': profile_form})
 
