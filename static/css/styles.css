@@ -70,7 +70,7 @@ a {
   color: var(--link);
 }
 
-a:not(.link-btn):hover {
+a:not(.link-btn, .btn, .btn-outline):hover {
   color: var(--link-hover);
 }
 
@@ -157,16 +157,6 @@ select:not([multiple]) {
   background: var(--bg-2);
 }
 
-footer {
-  text-align: center;
-  padding: 2rem;
-  background-color: var(--bg-2);
-}
-
-footer > a {
-  text-decoration: none;
-}
-
 /************ Helpers ************/
 .border {
   border-radius: 0.3rem;
@@ -237,6 +227,20 @@ footer > a {
   text-align: center;
   padding: 0.5rem 1rem;
   cursor: pointer;
+}
+
+.btn-outline {
+  border: 2px solid var(--fg-1);
+  border-radius: var(--border-radius);
+  color: var(--fg-1);
+  text-align: center;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  border-color: var(--fg-3);
+  color: var(--fg-3)
 }
 
 .btn-primary {
@@ -410,11 +414,14 @@ nav.cards > ul > li {
 /************ NavBar ************/
 .navbar {
   background: var(--bg-2);
+  border: 0;
+  border-radius: var(--border-radius);
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
 }
 
 .navbar a {
@@ -460,4 +467,39 @@ ul.navbar-nav {
   display: flex;
   flex-direction: row;
   gap: 1rem;
+}
+
+/************ Footer ************/
+footer {
+  margin-top: 2rem;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('/static/img/footer.jpg'); 
+  background-size: cover;
+  background-position: center;
+
+  border: 0;
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  color: var(--fg-2);
+  text-align: center;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-content img {
+  width: 50px;
+  height: auto;
+}
+
+.footer-logo {
+  font-size: 1.2rem;
+  color: var(--fg-3); 
+  font-weight: bold;
 }

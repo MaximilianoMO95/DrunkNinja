@@ -1,0 +1,33 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th {
+  background-color: #0a0a0a;
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+tr:nth-child(odd) {
+  background-color: #0a0a0a;
+}
+
+tr:nth-child(even) {
+  background-color: #0a0a0a;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}

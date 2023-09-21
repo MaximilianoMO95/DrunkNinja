@@ -8,15 +8,19 @@
 {% endblock head %}
 
 {% block content %}
-<header class="mb-5">
+<header >
         {% include "navbar.html" %}
+
+        <div class="banner">
+                <h1>Productos</h1>
+        </div>
 </header>
 
 <main class="container">
+
         <div class="row justify-content-center min-vh-100 align-items-center">
                 {% if object_list %}
-                        <h1>Productos</h1>
-
+                        
                         <ul class="product-list">
                                 {% for product in object_list %}
                                         <li class="card-link">
@@ -25,7 +29,7 @@
                                                 <div class="product-text">
                                                         <h2>{{ product.name }}</h2>
                                                         <span>{{ product.price }}</span>
-                                                        <a class="btn" href="{% url "products:basket_add" product.product_id %}">Add</a>
+                                                        <a class="btn" href="{% url "products:basket_add" product.product_id %}">Añadir al Carrito</a>
                                                 </div>
                                         </li>
                                 {% endfor %}
@@ -64,4 +68,5 @@
                 {% endif %}
         </div>
 </main>
+{% include "footer.html" %}
 {% endblock content %}

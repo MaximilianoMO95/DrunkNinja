@@ -1,38 +1,67 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dunk Ninja - Carrito{% endblock title %}
+
+{% block head %}
+        <link rel="stylesheet" href="{% static 'css/basket.css' %}">
+{% endblock head %}
 
 {% block content %}
-<div class="container mt-4">
-    <h1>Your Basket</h1>
+<header>
+        {% include "navbar.html" %}
 
-    {% if basket_items %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in basket_items %}
-            <tr>
-                <td>{{ item.product.name }}</td>
-                <td>{{ item.quantity }}</td>
-                <td>${{ item.product.price }}</td>
-                <td>${{ item.sum }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+        <div class="banner">
+                <h1>Carrito de Compras</h1>
+        </div>
+</header>
 
-    <p>Total Quantity: {{ total_quantity }}</p>
-    <p>Total Sum: ${{ total_sum }}</p>
+<main class="container mt-4">
+        <div class="row">
+                {% if basket_items %}
+                        <div class="col-md-8">
+                                <table class="table">
+                                        <thead>
+                                                <tr>
+                                                        <th>Product</th>
+                                                        <th>Quantity</th>
+                                                        <th>Price</th>
+                                                        <th>Total</th>
+                                                        <th>Total Quantity</th>
+                                                        <th>Total Sum</th>
+                                                </tr>
+                                        </thead>
+                                        <tbody>
+                                                {% for item in basket_items %}
+                                                <tr>
+                                                        <td>{{ item.product.name }}</td>
+                                                        <td>{{ item.quantity }}</td>
+                                                        <td>${{ item.product.price }}</td>
+                                                        <td>${{ item.sum }}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                </tr>
+                                                {% endfor %}
 
-    <a href="{% url "products:basket_checkout" %}" class="btn btn-primary">Proceed to Checkout</a>
+                                                <tr class="separator">
+                                                        <td colspan="6"></td>
+                                                </tr>
+                                                <tr>
+                                                        <td colspan="4"></td>
+                                                        <td>{{ total_quantity }}</td>
+                                                        <td>${{ total_sum }}</td>
+                                                </tr>
+                                        </tbody>
+                                </table>
+                        </div>
 
-    {% else %}
-    <p>Your basket is empty.</p>
-    {% endif %}
-</div>
-{% endblock %}
+                        <div class="col-md-4 justify-content-end text-right d-flex align-items-center">
+                                <a href="{% url "products:basket_checkout" %}" class="btn btn-primary btn-block">Confirmar Compra</a>
+                        </div>
+                {% else %}
+                        <h1 class="text-align-center p-5">Tu carrito esta vacio</h1>
+                {% endif %}
+        </div>
+</main>
+{% include "footer.html" %}
+{% endblock content %}

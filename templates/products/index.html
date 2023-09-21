@@ -10,11 +10,13 @@
 {% block content %}
 <header>
         {% include "navbar.html" %}
+
+        <div class="banner"></div>
 </header>
 
 <main class="container">
         <nav class="cards">
-                <h2 class="text-bold">Categorias</h2>
+                <h2 class="text-bold"></h2>
                 <ul class="product-list">
                         {% for category in categories %}
                                 <li>
@@ -29,4 +31,6 @@
                 </ul>
         </nav>
 </main>
+
+{% include "footer.html" %}
 {% endblock content %}
