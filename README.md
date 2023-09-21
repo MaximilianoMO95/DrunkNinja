@@ -32,9 +32,44 @@ pip install Pillow
 
 </br>
 
-Optinal Dependencies
+3. Set your `.env` file (you can use open ssh to generate a key)
+```
+SECRET_KEY='django-insecure-uo3kkl61h0w5eh$2%n*5ndv4(i)=t3^6q+biiz9-s2&3zt3esm'
+```
+
+</br>
+
+4. Migrate The Database
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+
+</br>
+
+5. Start The Server
+```
+python manage.py runserver
+```
+
+</br>
+</br>
+
+## Usar Oracle (Opcional)
+1. Install oracle driver
 ```
 pip install cx-Oracle
+```
+
+</br>
+
+2. Set your `.env` file (after that start oracle db)
+```
+ORACLE_DB_NAME='drunkNinja'
+ORACLE_USER='ninja'
+ORACLE_PASSWORD='Insecure007'
+ORACLE_HOST='localhost'
+ORACLE_PORT='1521'
 ```
 
 </br>
@@ -42,7 +77,7 @@ pip install cx-Oracle
 3. Migrate The Database
 ```
 python manage.py makemigrations
-python manage.py migrate
+python manage.py migrate --database oracle_db
 ```
 
 </br>
