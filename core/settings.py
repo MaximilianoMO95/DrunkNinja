@@ -80,11 +80,29 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+oracle_user = os.getenv("ORACLE_USER")
+oracle_db_name = os.getenv("ORACLE_DB_NAME")
+oracle_password = os.getenv("ORACLE_PASSWORD")
+oracle_host = os.getenv("ORACLE_HOST")
+oracle_port = os.getenv("ORACLE_PORT")
+
 DATABASES = {
+    'oracle_db': {
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': oracle_db_name,
+        'USER': oracle_user,
+        'PASSWORD': oracle_password,
+        'HOST': oracle_host,
+        'PORT': oracle_port,
+        'OPTIONS': {
+            'threaded': True,
+        },
+    },
+
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
 }
 
 
