@@ -40,7 +40,7 @@
 
                         {% if is_paginated %}
                                 <nav aria-label="paginacion">
-                                        <ul class="pagination justify-content-center">
+                                        <ul id="custom-pagination" class="pagination justify-content-center">
                                                 <li class="page-item {% if not page_obj.has_previous %} disabled {% endif %}">
                                                         <a class="page-link"
                                                            href="{% if  page_obj.has_previous %} {% url 'products:paginator' page_obj.previous_page_number %} {% else %} # {% endif %}"
@@ -51,7 +51,7 @@
                                                 </li>
 
                                                 {% for page in paginator.page_range %}
-                                                        <li class="page-item">
+                                                        <li class="page-item page-index {% if page == page_obj.number %} active {% endif %}">
                                                                 <a class="page-link" href="{% url 'products:paginator' page %}">{{ page }}</a>
                                                         </li>
                                                 {% endfor %}
@@ -73,3 +73,39 @@
 </main>
 {% include "footer.html" %}
 {% endblock content %}
+
+{% block script %}
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+                const customPagination = document.getElementById("custom-pagination");
+                const pageLinks = customPagination.querySelectorAll(".page-index");
+
+                pageLinks.forEach(function(link) {
+                        link.style.display = "none";
+                });
+
+                const currentPage = {{ page_obj.number }};
+                const totalPages = {{ paginator.num_pages }};
+
+                const pagesToShow = 4;
+
+                let startPage = Math.max(1, currentPage - Math.floor(pagesToShow / 2));
+                let endPage = Math.min(totalPages, startPage + pagesToShow - 1);
+
+                if (totalPages <= pagesToShow) {
+                        startPage = 1;
+                        endPage = totalPages;
+                } else if (currentPage <= Math.floor(pagesToShow / 2)) {
+                        startPage = 1;
+                        endPage = pagesToShow;
+                } else if (currentPage + Math.floor(pagesToShow / 2) >= totalPages) {
+                        endPage = totalPages;
+                        startPage = totalPages - pagesToShow + 1;
+                }
+
+                for (let i = startPage; i <= endPage; i++) {
+                        pageLinks[i - 1].style.display = "block";
+                }
+        });
+</script>
+{% endblock script %}
