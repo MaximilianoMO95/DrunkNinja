@@ -15,17 +15,17 @@
 </header>
 
 <main class="container">
-        <nav class="cards">
-                <h2 class="text-bold"></h2>
-                <ul class="product-list">
+        <nav class="card-container">
+                <h2 class="text-bold">Categorias</h2>
+                <ul class="card-list">
                         {% for category in categories %}
-                                <li>
-                                        <a class="card-link" href="{% url "products:category" category_id=category.category_id %}" title="Ir a {{ category.name }}">
-                                                 <img src="{{ category.image.url }}" alt="{{ category.name }} Image">
-                                                 <div class="product-text">
-                                                        {{ category.name }}
-                                                 </div>
-                                        </a>
+                                <li class="card-item">
+                                        <a class="card-link" href="{% url "products:category" category_id=category.category_id %}" title="Ir a {{ category.name }}"></a>
+
+                                         <img class="card-img" src="{{ category.image.url }}" alt="{{ category.name }} Image">
+                                         <div class="card-text">
+                                                 <span>{{ category.name }}</span>
+                                         </div>
                                 </li>
                         {% endfor %}
                 </ul>
