@@ -26,6 +26,9 @@ urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('account/', include('apps.users.urls', namespace='users')),
     path('products/', include('apps.products.urls', namespace='products')),
+    path('payment/', include('apps.webpay.urls', namespace='payment')),
+
+    path('api/', include('apps.api.urls')),
 ]
 
 if settings.DEBUG:
