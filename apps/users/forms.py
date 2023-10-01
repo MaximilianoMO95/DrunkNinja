@@ -5,9 +5,13 @@ from django.contrib.auth.forms import (
         UserCreationForm
 )
 
+from captcha.fields import ReCaptchaField
+
 from .models import Customer, User
 
 class UserLoginForm(AuthenticationForm):
+    captcha = ReCaptchaField()
+
     class Meta:
         model = User 
         fields = ('username', 'password')

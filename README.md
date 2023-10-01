@@ -29,6 +29,8 @@ pip install django
 pip install python-dotenv
 pip install Pillow
 pip install djangorestframework
+pip install requests
+pip install django-recaptcha
 ```
 
 </br>
