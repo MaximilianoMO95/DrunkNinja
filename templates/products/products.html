@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Drunk Ninja - Products{% endblock title %}
+
+{% block head %}
+        <link rel="stylesheet" href="{% static 'css/products.css' %}">
+{% endblock head %}
+
+{% block content %}
+<header >
+        {% include "navbar.html" %}
+
+        <div class="banner">
+                <h1>Productos</h1>
+        </div>
+</header>
+
+<main class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-5 justify-content-center align-items-center">
+                {% if object_list %}
+                        <div class="card-container mt-5"> 
+                                <ul class="card-list">
+                                        {% for product in object_list %}
+                                                <li class="card-item">
+                                                        <img class="card-img" src="{{ product.image.url }}" alt="{{ product.name }} Image">
+                                                        <a class="card-link" href="#"></a>
+
+                                                        <div class="card-text product-card-text">
+                                                                <h2>{{ product.name }}</h2>
+                                                                <div class="d-flex flex-row align-items-center justify-content-between">
+                                                                        <span>${{ product.price }}</span>
+                                                                        <a class="btn-primary link-btn" href="{% url "products:basket_add" product.product_id %}">+</a>
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                        {% endfor %}
+                                </ul>
+                        </div>
+
+                        {% if is_paginated %}
+                                <nav aria-label="paginacion">
+                                        <ul id="custom-pagination" class="pagination justify-content-center">
+                                                <li class="page-item {% if not page_obj.has_previous %} disabled {% endif %}">
+                                                        <a class="page-link"
+                                                           href="{% if  page_obj.has_previous %} {% url 'products:paginator' page_obj.previous_page_number %} {% else %} # {% endif %}"
+                                                           tabindex="-1"
+                                                           aria-disabled="true">
+                                                           Prev
+                                                        </a>
+                                                </li>
+
+                                                {% for page in paginator.page_range %}
+                                                        <li class="page-item page-index {% if page == page_obj.number %} active {% endif %}">
+                                                                <a class="page-link" href="{% url 'products:paginator' page %}">{{ page }}</a>
+                                                        </li>
+                                                {% endfor %}
+
+                                                <li class="page-item {% if not page_obj.has_next %} disabled {% endif %}">
+                                                        <a class="page-link"
+                                                        href="{% if  page_obj.has_next %} {% url 'products:paginator' page_obj.next_page_number %} {% else %} # {% endif %}">
+                                                        Next 
+                                                        </a>
+                                                </li>
+                                        </ul>
+                                </nav>
+                        {% endif %}
+
+                {% else %}
+                        <h1 class="text-align-center">No Se Han Encontrado Productos</h1>
+                {% endif %}
+        </div>
+</main>
+{% include "footer.html" %}
+{% endblock content %}
+
+{% block script %}
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+                const customPagination = document.getElementById("custom-pagination");
+                const pageLinks = customPagination.querySelectorAll(".page-index");
+
+                pageLinks.forEach(function(link) {
+                        link.style.display = "none";
+                });
+
+                const currentPage = {{ page_obj.number }};
+                const totalPages = {{ paginator.num_pages }};
+
+                const pagesToShow = 4;
+
+                let startPage = Math.max(1, currentPage - Math.floor(pagesToShow / 2));
+                let endPage = Math.min(totalPages, startPage + pagesToShow - 1);
+
+                if (totalPages <= pagesToShow) {
+                        startPage = 1;
+                        endPage = totalPages;
+                } else if (currentPage <= Math.floor(pagesToShow / 2)) {
+                        startPage = 1;
+                        endPage = pagesToShow;
+                } else if (currentPage + Math.floor(pagesToShow / 2) >= totalPages) {
+                        endPage = totalPages;
+                        startPage = totalPages - pagesToShow + 1;
+                }
+
+                for (let i = startPage; i <= endPage; i++) {
+                        pageLinks[i - 1].style.display = "block";
+                }
+        });
+</script>
+{% endblock script %}

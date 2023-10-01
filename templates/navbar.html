@@ -1,0 +1,17 @@
+<nav class="navbar">
+        <div class="navbar-logo">
+                <a href="/">DrunkNinja</a>
+        </div>
+        <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="link-btn" href="{% url 'products:basket' %}" title="Carrito de compras">Carrito</a>
+                </li>
+                {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'users:profile' %}">Perfil</a></li>
+                        <li class="nav-item"><a class="navbar-btn" href="{% url 'users:logout' %}">Log Out</a></li>
+
+                {% else %}
+                        <li class="nav-item"><a class="navbar-btn" href="{% url 'users:login' %}">Log In</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'users:signin' %}">Sign In</a></li>
+                {% endif %}
+        </ul>
+</nav>

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Drunk Ninja{% endblock title %}
+
+{% block head %}
+        <link rel="stylesheet" href="{% static 'css/products.css' %}">
+{% endblock head %}
+
+{% block content %}
+<header>
+        {% include "navbar.html" %}
+
+        <div class="banner"></div>
+</header>
+
+<main class="container">
+        <nav class="card-container">
+                <h2 class="text-bold">Categorias</h2>
+                <ul class="card-list">
+                        {% for category in categories %}
+                                <li class="card-item">
+                                        <a class="card-link" href="{% url "products:category" category_id=category.category_id %}" title="Ir a {{ category.name }}"></a>
+
+                                         <img class="card-img" src="{{ category.image.url }}" alt="{{ category.name }} Image">
+                                         <div class="card-text">
+                                                 <span>{{ category.name }}</span>
+                                         </div>
+                                </li>
+                        {% endfor %}
+                </ul>
+        </nav>
+</main>
+
+{% include "footer.html" %}
+{% endblock content %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Drunk Ninja - Login{% endblock title %}
+
+{% block head %}
+<style>
+        .login-btn-container {
+                display: flex;
+                flex-direction: column;
+                gap: 0.8rem;
+        }
+
+        .login-btn-container>a {
+                font-size: 0.9rem;
+                align-self: flex-end;
+        }
+
+        .errorlist {
+                list-style: none;
+        }
+
+        .error-container {
+                padding: 1rem;
+                text-align: center;
+        }
+</style>
+{% endblock head %}
+
+{% block content %}
+<main class="contaier banner-bg">
+        <div class="row justify-content-center align-items-center min-vh-100">
+                <div class="glass-container row justify-content-center align-items-center col-lg-4 col-md-6">
+                        <form class="row gy-4 p-5" method="post">
+                                <h2 class="text-align-center mt-3">Inicia Sesion</h2>
+
+                                {% csrf_token %}
+
+                                {% if form.non_field_errors %}
+                                        <div class="error">
+                                                {{ form.non_field_errors.as_ul }}
+                                        </div>
+                                {% endif %}
+
+                                {% for field in form %}
+                                        <div>
+                                                {{ field.label_tag }} 
+                                                {{ field }}
+                                                {% if field.errors %}
+                                                        <small class="error">{{ field.errors|striptags  }}</small> 
+                                                {% endif %}
+                                        </div>
+                                {% endfor %}
+
+                                <div class="login-btn-container">
+                                        <input type="submit" value="Iniciar Sesion">
+                                        <div class="d-flex justify-content-between">
+                                                <a href="{% url "users:signin" %}">crear una cuenta</a>
+                                                <a href="{% url "users:password_reset" %}">recuperar contraseña</a>
+                                        </div>
+                                </div>
+                        </form>
+                </div>
+        </div>
+</main>
+{% endblock content %}
