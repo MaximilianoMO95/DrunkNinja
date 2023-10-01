@@ -41,9 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'captcha',
 
     'apps.users',
     'apps.products',
+    'apps.webpay',
+    'apps.api',
 ]
 
 MIDDLEWARE = [
@@ -148,6 +152,10 @@ DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
 # Users
 AUTH_USER_MODEL = 'users.User'
+
+# Api Catcha
+RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
 
 # Only use for development
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
