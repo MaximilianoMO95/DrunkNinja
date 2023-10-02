@@ -15,6 +15,19 @@ Simple tienda de licor contruida con `Django` python framework.
 </br>
 </br>
 
+## Testea Webpay (Test Mode)
+La clave para el rut y visa es la misma
+
+```
+Credit Cart (Visa): 4051885600446623
+Ex. Date: Any Valid Date
+Rut: 11.111.111-1
+Password: 123
+```
+
+</br>
+</br>
+
 ## Instalacion
 1. Clone the Repo
 ```
